@@ -1,13 +1,13 @@
-#cache:
-#  directories:
-#    - 
+cache:
+  directories:
+    - /usr/local/texlive
 
-notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/2003f73d9ccfbf9e3e53
-    on_success: always  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
+#notifications:
+#  webhooks:
+#    urls:
+#      - https://webhooks.gitter.im/e/2003f73d9ccfbf9e3e53
+#    on_success: always  # options: [always|never|change] default: always
+#    on_failure: always  # options: [always|never|change] default: always
 
 env:
   - PATH: /opt/texbin:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
@@ -19,20 +19,15 @@ before_script:
 install:
 #  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended 
 #  - sudo apt-get install chktex
-  - cd ../
-  - wget -c http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-  - mkdir texlive
-  - tar -zxf install-tl-unx.tar.gz -C ./texlive --strip-components=1
-  - cd texlive
-  - cp $TRAVIS_BUILD_DIR/.nmc.profile ./nmc.profile
-  - sudo ./install-tl -profile nmc.profile
+  - if [ -f "/usr/local/texlive/2014/bin/x86_64-linux" ] ; then
+    ./download_texlive.sh ; fi
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --self
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --all
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/texhash
-  - cd $TRAVIS_BUILD_DIR
+  - cd $TRAVIS_BUILD_DIR && cd tex
 
 script:
-  - latex tex/manual.tex
-  - bibtex tex/manual.tex
-  - latex tex/manual.tex
-  - latex tex/manual.tex
+  - /usr/local/texlive/2014/bin/x86_64-linux/latex manual.tex
+  - /usr/local/texlive/2014/bin/x86_64-linux/bibtex manual.tex
+  - /usr/local/texlive/2014/bin/x86_64-linux/latex manual.tex
+  - /usr/local/texlive/2014/bin/x86_64-linux/latex manual.tex
