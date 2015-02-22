@@ -1,0 +1,29 @@
+#cache:
+#  directories:
+#    - 
+
+git:
+  depth: 10
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/2003f73d9ccfbf9e3e53
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+
+before_script:
+  - echo -e "Host lars.inf.tu-dresden.de\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - ssh-keyscan -H -t rsa,dsa lars.inf.tu-dresden.de >> ~/.ssh/known_hosts
+
+install:
+#  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended 
+#  - sudo apt-get install chktex
+  - wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu && chmod +x ./install-tl-ubuntu
+  - ./install-tl-ubuntu
+
+script:
+  - latex tex/manual.tex
+  - bibtex tex/manual.tex
+  - latex tex/manual.tex
+  - latex tex/manual.tex
