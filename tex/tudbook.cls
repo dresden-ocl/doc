@@ -115,7 +115,7 @@
         \hspace*{-30mm}%
         \begin{tabular*}{210mm}[b]{p{30mm}l@{\extracolsep\fill}p{30mm}}
           % TUD-Logo
-            &\hspace*{-19mm}\includegraphics[width=57mm]{TU_Logo_SW}\\[3.75mm]\hline%
+            &\hspace*{-19mm}\includegraphics[width=57mm]{TU_Logo_SW.pdf}\\[3.75mm]\hline%
           % Einrichtungsname
             &\rule[-1.2mm]{0mm}{13pt}\univBoldIX\@einrichtung%
           % Fachrichtungsname
