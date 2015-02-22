@@ -1,4 +1,6 @@
-doc
-===
+#MANUAL OF DRESDEN OCL FOR ECLIPSE
 
-The development and user documentation of Dresden OCL
+This directory contains the manual of Dresden OCL for Eclipse.
+
+The Latex files to edit the manual are located in the 'tex' sub-
+directory.
