@@ -2,9 +2,6 @@
 #  directories:
 #    - 
 
-git:
-  depth: 10
-
 notifications:
   webhooks:
     urls:
